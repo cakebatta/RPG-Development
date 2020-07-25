@@ -1,25 +1,17 @@
 class Monster:
-    level = 1
-    health = 100
-    armor = 10
-    speed = 5
-    name = ''
-    loot = ''
-    xp = 10
-    cm = ''
     def __init__(self, level, health, armor, speed, name, loot, xp, cm):
-        self.level = 1
-        self.health = 100
-        self.armor = 10
-        self.speed = 5
-        self.name = ''
-        self.loot = ''
-        self.xp = 10
-        self.cm = ''
-        return
+            self.level = level
+            self.health = health
+            self.armor = armor
+            self.speed = speed
+            self.name = name
+            self.loot = loot
+            self.xp = xp
+            self.cm = cm
     def combat_message(self):
-        print(Monster.cm)
-        return combat_message()
+        cm = self.cm
+        print(cm)
+        return
 
 class Hero:
     def __init__(self, level, health, armor, speed, name, inventory, head, shoulder, cloak, chestpiece, legguards, weapon, shield, rings):
@@ -38,7 +30,6 @@ class Hero:
         shield = ""
         rings = []
         return
-
 
 
 

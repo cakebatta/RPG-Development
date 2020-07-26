@@ -1,9 +1,34 @@
+import random #this is to enable the random function necessary for artificially rolling dice
+
+class Dice: #this creates the template for the dice. Not sure if I'll have more than one, but I have the optoin this way.
+    def __init__(self, sides=20):
+        self.sides=sides
+    def roll(self):
+        return random.randint(1, self.sides)
+
+def attack(self,d): #rolling will have a base of 20. Easy math, can probably be modified later somehow.
+    d = Dice.roll(20)
+    base_damage = d.roll()
+    if 1 <= base_damage <= 2:
+        print('You miss!')
+    elif 3 <= base_damage <= 4:
+        print('A glancing blow! The enemy seems largely unscathed')
+    elif 5 <= base_damage <= 17:
+        print('A solid hit!')
+    elif 18 <= base_damage <= 19:
+        print('You catch the enemy by surprise, critical hit!')
+    elif base_damage == 20:
+        print('You absolutely overwhelm the enemy, dealing 3x damage!')
+
 class Monster:
-    def __init__(self, level, health, armor, speed, name, loot, xp, cm):
+    def __init__(self, level, health, armor, speed, str, int, agi, name, loot, xp, cm):
             self.level = level
             self.health = health
             self.armor = armor
             self.speed = speed
+            self.str = str
+            self.int = int
+            self.agi = agi
             self.name = name
             self.loot = loot
             self.xp = xp
@@ -13,23 +38,73 @@ class Monster:
         print(cm)
         return
 
-class Hero:
-    def __init__(self, level, health, armor, speed, name, inventory, head, shoulder, cloak, chestpiece, legguards, weapon, shield, rings):
-        level = 1
-        health = 100
-        armor = 10
-        speed = 5
-        name = ""
-        inventory = []
-        head = ""
-        shoulder = ""
-        cloak = ""
-        chestpiece = ""
-        legguards = ""
-        weapon = ""
-        shield = ""
-        rings = []
+class Player:
+    def __init__(self, level, health, armor, speed, STR, INT, AGI, name, inventory, xp):
+        self.level = level
+        self.health = health
+        self.armor = armor
+        self.speed = speed
+        self.STR = STR
+        self.INT = INT
+        self.AGI = AGI
+        self.name = name
+        self.inventory = inventory
+        self.xp = xp
         return
+class Warrior(Player):
+    def __init__(self):
+        super().__init__(level=1, health=240, armor=25, speed=4, STR=12, INT=4, AGI=6, name=input('What is your name?'), inventory={}, xp=0)
+        self.prof = 'Warrior'
+        self.level = 1
+        self.STR = 12
+        self.INT = 4
+        self.AGI = 6
+        self.health = self.level*10 + self.STR*15 + self.INT*5 + self.AGI*10
+        self.armor = 25
+        self.speed = 4
 
+        inventory = {}
+        xp = 0
+class Priest(Player):
+    def __init__(self):
+        super().__init__(level=1, health=100, armor=11, speed=6, STR=5, INT=12, AGI=5, name=input('What is your name?'), inventory={}, xp=0)
+        self.prof = 'Priest'
+        self.level = 1
+        self.STR = 5
+        self.INT = 12
+        self.AGI = 5
+        self.health = self.level*10 + self.STR*5 + self.INT*10 + self.AGI*5
+        self.armor = 11
+        self.speed = 6
+class Mage(Player):
+    def __init__(self):
+        super().__init__(level=1, health=60, armor=11, speed=7, STR=3, INT=14, AGI=5, name=input('What is your name?'), inventory={}, xp=0)
+        self.prof = 'Mage'
+        self.level = 1
+        self.STR = 3
+        self.INT = 14
+        self.AGI = 5
+        self.health = self.level*10 + self.STR*5 + self.INT*10 + self.AGI*5
+        self.armor = 25
+        self.speed = 4
+class Rogue(Player):
+    def __init__(self):
+        super().__init__(level=1, health=160, armor=18, speed=7, STR=8, INT=5, AGI=11, name=input('What is your name?'), inventory={}, xp=0)
+        self.prof = 'Mage'
+        self.level = 1
+        self.STR = 8
+        self.INT = 5
+        self.AGI = 11
+        self.health = self.level*10 + self.STR*10 + self.INT*5 + self.AGI*10
+        self.armor = 25
+        self.speed = 4
 
-
+# equipment: head, shoulder, cloak, chestpiece, legguards, weapon, shield, rings
+#         self.head = head
+#         self.shoulder = shoulder
+#         self.cloak = cloak
+#         self.chestpiece = chestpiece
+#         self.legguards = legguards
+#         self.weapon = weapon
+#         self.shield = shield
+#         self.rings = rings
